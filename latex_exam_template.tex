@@ -23,6 +23,10 @@
 \usepackage{environ}
 \usepackage{mdframed}
 
+% Booleans to show answers and to ask students to return the question form
+\newif\ifshowanswers
+\newif\ifreturnform
+
 % ==============================================================================
 % Question environment and counter
 %
@@ -49,14 +53,12 @@
 % ==============================================================================
 % Show answers?
 %
-\newif\ifshowanswers
 \showanswerstrue
 % \showanswersfalse
 
 % ==============================================================================
 % Return form?
 %
-\newif\ifreturnform
 % \returnformtrue
 \returnformfalse
 
