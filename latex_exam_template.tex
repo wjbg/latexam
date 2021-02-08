@@ -1,0 +1,236 @@
+% latex_exam_template.tex (Version 2021.2)
+%
+% A LaTeX template for written exams.
+% Wouter Grouve (https://personen.utwente.nl/w.j.b.grouve)
+% Faculty of Engineering Technology, University of Twente.
+%
+% Based on the excellent template from the Australian National
+% Unversity, created by Timothy Kam in 2004. The original version can
+% be found here: https://ctan.org/pkg/anufinalexam?lang=en
+%
+% Licence type: Free as defined in the GNU General Public Licence:
+% http://www.gnu.org/licenses/gpl.html
+
+\documentclass[a4paper,12pt,fleqn]{article}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage[skip=2pt,font=small]{caption}
+\usepackage{environ}
+\usepackage{mdframed}
+
+% ==============================================================================
+% Question environment and counter
+%
+\newcounter{question}
+\newenvironment{question}{\refstepcounter{question}
+   \paragraph{\textbf{Question~\thequestion.}}}
+
+% ==============================================================================
+% Answer boxes
+%
+\mdtheorem[outerlinewidth=2,roundcorner=10pt,
+           leftmargin=0,rightmargin=0,
+           backgroundcolor=yellow!40,outerlinecolor=blue!70!black,
+           innertopmargin=\topskip,splittopskip=\topskip,
+           ntheorem=true,]{answer_box}{Answer}[section]
+
+\NewEnviron{answer}{
+  \ifshowanswers
+  \begin{answer_box*}
+    \BODY
+  \end{answer_box*}
+  \fi}
+
+% ==============================================================================
+% Show answers?
+%
+\newif\ifshowanswers
+\showanswerstrue
+% \showanswersfalse
+
+% ==============================================================================
+% Return form?
+%
+\newif\ifreturnform
+% \returnformtrue
+\returnformfalse
+
+
+% ==============================================================================
+%
+% Course information
+%
+% ==============================================================================
+\newcommand{\institution}{{\Large UNIVERSITY OF TWENTE}\\\vspace{4mm}
+                                  Faculty of Engineering Technology\\
+                                  Minor Aircraft Engineering}
+
+\newcommand{\coursename}{Aircraft Structures}
+\newcommand{\coursecode}{202000157}
+\newcommand{\frontimage}{img/plane.png}
+
+\newcommand{\examtype}{Final Exam}
+\newcommand{\examdate}{January 2021}
+\newcommand{\examtime}{Two hours}
+
+\newcommand{\materials}{Calculator, Formula Sheet}
+\newcommand{\lastwords}{End of Examination}
+
+
+% ==============================================================================
+%
+% Margins, header and footer
+%
+% ==============================================================================
+\setlength{\topmargin}{0cm}
+\setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{16cm}
+\pagestyle{fancy}
+\cfoot{\footnotesize{Page \thepage \ of \pageref{finalpage}
+       -- \coursename \ (\coursecode)}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+
+% ==============================================================================
+%
+% Title page
+%
+% ==============================================================================
+\thispagestyle{empty}
+
+\begin{center}
+\large\textbf{\institution}
+\end{center}
+\vspace{1cm}
+
+\begin{center}
+\vspace{1cm}
+\includegraphics[scale=.8]{\frontimage}
+\end{center}
+
+\vspace{2cm}
+
+\begin{center}
+\Large\textbf{\coursename} (\coursecode)
+\end{center}
+
+\begin{center}
+\textit{ \examtype{} -- \examdate}
+\end{center}
+\vspace{1cm}
+
+\vspace{2cm}
+
+\begin{center}
+\textit{Available Time:  \examtime}
+\end{center}
+\begin{center}
+  \textit{Permitted Materials: \materials}
+\end{center}
+
+\ifreturnform
+\begin{table}[b]
+  \centering
+  \begin{tabular}{p{6cm}p{5cm}}\hline\\[-7pt]
+    Name: & Student number:\\[5pt]\hline
+  \end{tabular}
+\end{table}
+\fi
+
+% ==============================================================================
+%
+% Second page: Generally used for instruction
+%
+% ==============================================================================
+
+\newpage
+\setcounter{page}{1}
+
+\begin{quote}
+  Generic guidelines:
+    \begin{enumerate}
+      \ifreturnform
+      \item Write your name and student number on top of this page and
+        hand this document at the end of the exam. Your exam will not be
+        graded if you fail to return this question form.
+      \fi
+      \item The front page lists the materials you can use during this
+        exam. Any other materials are not allowed. This includes mobile
+        devices.
+      \item When asked, elaborate your answers by providing the
+        equations used or listing the assumptions made.
+      \item Please write clearly. I am an engineer not an
+        archaeologist.
+    \end{enumerate}
+    \vspace{3mm}
+    \textbf{NB. This is an individual exam.} Good luck!
+\end{quote}
+\bigskip
+
+
+% ==============================================================================
+%
+% Exam questions
+%
+% ==============================================================================
+
+\newpage
+\begin{question}
+[ 15/100 points ] The two dimensional stress state at a
+particular point in a structure equals \mbox{$\sigma_{\text{x}} =$ 350
+  MPa}, \mbox{$\sigma_{\text{y}} =$ 225 MPa} and
+\mbox{$\tau_{\text{xy}} =$ 100 MPa}.
+\begin{enumerate}
+\item{} [ 10 points ] Calculate the principal stresses and the
+  orientation of the corresponding principal planes.
+  \begin{answer}
+    The principal stresses are: $\sigma_{\textrm{I}} = 405$ MPa and
+    $\sigma_{\textrm{II}} = 170$ MPa, while the principal planes are
+    oriented at $\theta = 0.51 \pm \pi/2$ or
+    $\theta = 29^{\circ} \pm 90^{\circ}$.
+
+    As a reminder, the equations for the principal stresses are:
+    \begin{equation*}
+      \sigma_{\textrm{I,II}} = \frac{\sigma_{\textrm{x}} + \sigma_{\textrm{y}}}{2} \pm
+      \frac{1}{2}\sqrt{(\sigma_{\textrm{x}} - \sigma_{\textrm{y}})^2 + 4\tau^2_{\textrm{xy}}},
+    \end{equation*}
+    while the principal planes can be found using:
+    \begin{equation*}
+      \tan 2\theta = \frac{2\tau_{\textrm{xy}}}{\sigma_{\textrm{x}} - \sigma_{\textrm{y}}}.
+    \end{equation*}
+    Points: Award 3 points for the correct equation for the principal
+    stresses, 3 points for the correct equation for the principal
+    planes and 2 points for each correct answer.
+  \end{answer}
+\item{} [ 5 points ] What is the magnitude of the shear stress
+  acting on the principal planes?
+  \begin{answer}
+    The shear stress on the principal planes equals 0 MPa.
+
+    Points: 5 points for the correct answer, otherwise 0.
+  \end{answer}
+\end{enumerate}
+\end{question}
+
+
+\begin{question}
+[ 15/100 points ] The turbine blades in modern jet engines are
+subjected to intense heat and extreme loads\ldots
+\end{question}
+
+\begin{center}
+\vspace{3cm}
+--------- \textit{\lastwords} ---------
+\end{center}
+
+\label{finalpage}
+\end{document}
