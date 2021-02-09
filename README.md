@@ -16,11 +16,11 @@ The template features:
    * Materials permitted during the exam
    * Optional fields for student name and student number
 2. A page with generic guidelines for the exam.
-3. Two enviroments:
-   * `question` for autonumbered questions; this allows reshuffling
-     of questions without messing up the numering order...
-   * `answer` for the answers, which will be printed in a yellowish
-     box.
+3. A command and an environment for the questions and answers:
+   * `\question` for auto-numbered questions; this allows easy
+     reshuffling of questions without messing up the numbering order...
+   * `\begin{answer} ... \end{answer}` for the answers, which will be
+     printed in a yellowish box.
 
 The answers can be shown or hidden using a boolean:
 
@@ -34,9 +34,9 @@ The answers can be shown or hidden using a boolean:
 ```
 
 Optionally, the form provides space for the student name and number on
-the front page, and adds a statement that the form should be returned
-after the axam to the generic guidelines. This option can be turned on
-or off using the following boolean.
+the front page, and adds a statement that the question form should be
+returned after the exam. This option can be turned on or off using the
+following boolean.
 
 ```latex
 % ==============================================================================
@@ -47,9 +47,9 @@ or off using the following boolean.
 
 ```
 
-Check the enclosed pdf for an impression.
+Check the [pdf](latex_exam_template.pdf) for an impression.
 
 ## License
 
 Free as defined in the [GNU General Public
-Licence v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+License v3](https://www.gnu.org/licenses/gpl-3.0.en.html).

@@ -28,11 +28,12 @@
 \newif\ifreturnform
 
 % ==============================================================================
-% Question environment and counter
+% Question command
 %
 \newcounter{question}
-\newenvironment{question}{\refstepcounter{question}
-   \paragraph{\textbf{Question~\thequestion.}}}
+\newcommand*\question{%
+  \stepcounter{question}%
+  \paragraph{Question \thequestion}}
 
 % ==============================================================================
 % Answer boxes
@@ -186,8 +187,8 @@
 % ==============================================================================
 
 \newpage
-\begin{question}
-[ 15/100 points ] The two dimensional stress state at a
+
+\question [ 15/100 points ] The two dimensional stress state at a
 particular point in a structure equals \mbox{$\sigma_{\text{x}} =$ 350
   MPa}, \mbox{$\sigma_{\text{y}} =$ 225 MPa} and
 \mbox{$\tau_{\text{xy}} =$ 100 MPa}.
@@ -221,13 +222,9 @@ particular point in a structure equals \mbox{$\sigma_{\text{x}} =$ 350
     Points: 5 points for the correct answer, otherwise 0.
   \end{answer}
 \end{enumerate}
-\end{question}
 
-
-\begin{question}
-[ 15/100 points ] The turbine blades in modern jet engines are
+\question [ 15/100 points ] The turbine blades in modern jet engines are
 subjected to intense heat and extreme loads\ldots
-\end{question}
 
 \begin{center}
 \vspace{3cm}
